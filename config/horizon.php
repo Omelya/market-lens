@@ -202,11 +202,28 @@ return [
                 'balanceMaxShift' => 1,
                 'balanceCooldown' => 3,
             ],
+            'broadcast-supervisor' => [
+                'connection' => 'redis',
+                'queue' => ['broadcasts'],
+                'balance' => 'auto',
+                'minProcesses' => 3,
+                'maxProcesses' => 10,
+                'tries' => 3,
+                'timeout' => 60,
+            ],
         ],
 
         'local' => [
             'supervisor-1' => [
                 'maxProcesses' => 3,
+            ],
+            'broadcast-supervisor' => [
+                'connection' => 'redis',
+                'queue' => ['broadcasts'],
+                'balance' => 'auto',
+                'minProcesses' => 3,
+                'maxProcesses' => 10,
+                'tries' => 3,
             ],
         ],
     ],
