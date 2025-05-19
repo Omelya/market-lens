@@ -7,6 +7,17 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
+/**
+ * 
+ *
+ * @property-read \App\Models\TradingPair|null $tradingPair
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\TradingPosition> $tradingPositions
+ * @property-read int|null $trading_positions_count
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingSignal newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingSignal newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingSignal query()
+ * @mixin \Eloquent
+ */
 class TradingSignal extends Model
 {
     use HasFactory;

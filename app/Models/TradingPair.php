@@ -8,6 +8,23 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
+/**
+ * 
+ *
+ * @property-read \App\Models\Exchange|null $exchange
+ * @property-read Collection<int, \App\Models\HistoricalData> $historicalData
+ * @property-read int|null $historical_data_count
+ * @property-read Collection<int, \App\Models\IndicatorValue> $indicatorValues
+ * @property-read int|null $indicator_values_count
+ * @property-read Collection<int, \App\Models\TradingPosition> $tradingPositions
+ * @property-read int|null $trading_positions_count
+ * @property-read Collection<int, \App\Models\TradingSignal> $tradingSignals
+ * @property-read int|null $trading_signals_count
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingPair newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingPair newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingPair query()
+ * @mixin \Eloquent
+ */
 class TradingPair extends Model
 {
     use HasFactory;

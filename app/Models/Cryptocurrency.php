@@ -5,6 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * 
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Cryptocurrency newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Cryptocurrency newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Cryptocurrency query()
+ * @mixin \Eloquent
+ */
 class Cryptocurrency extends Model
 {
     use HasFactory;

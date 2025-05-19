@@ -6,6 +6,15 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
+/**
+ * 
+ *
+ * @property-read \App\Models\TradingPair|null $tradingPair
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|HistoricalData newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|HistoricalData newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|HistoricalData query()
+ * @mixin \Eloquent
+ */
 class HistoricalData extends Model
 {
     use HasFactory;

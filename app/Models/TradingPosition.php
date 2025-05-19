@@ -6,6 +6,18 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
+/**
+ * 
+ *
+ * @property-read \App\Models\ExchangeApiKey|null $apiKey
+ * @property-read \App\Models\TradingPair|null $tradingPair
+ * @property-read \App\Models\TradingSignal|null $tradingSignal
+ * @property-read \App\Models\User|null $user
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingPosition newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingPosition newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingPosition query()
+ * @mixin \Eloquent
+ */
 class TradingPosition extends Model
 {
     use HasFactory;

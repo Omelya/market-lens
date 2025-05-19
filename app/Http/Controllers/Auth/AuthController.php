@@ -7,6 +7,7 @@ use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Requests\Auth\RegisterRequest;
 use App\Http\Resources\Auth\UserResource;
 use App\Models\User;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -24,34 +25,24 @@ class AuthController extends Controller
 
         $token = $user->createToken('auth_token')->plainTextToken;
 
-        return response()
-            ->json([
-                'message' => 'Реєстрація успішна',
-                'user' => new UserResource($user),
-                'token' => $token,
-            ], 201);
+        return (new UserResource($user))
+            ->additional(['token' => $token])
+            ->response()
+            ->setStatusCode(201);
     }
 
     public function login(LoginRequest $request): JsonResponse
     {
         if (!Auth::attempt($request->only('email', 'password'))) {
-            return response()
-                ->json(['message' => 'Невірні облікові дані'], 401);
+            throw new ModelNotFoundException('User not found');
         }
 
         $user = User::where('email', $request->email)->firstOrFail();
         $token = $user->createToken('auth_token')->plainTextToken;
 
-        return response()->json([
-            'user' => new UserResource($user),
-            'token' => $token,
-        ]);
-    }
-
-    public function me(Request $request): JsonResponse
-    {
-        return response()
-            ->json(['user' => new UserResource($request->user())]);
+        return (new UserResource($user))
+            ->additional(['token' => $token])
+            ->response();
     }
 
     public function logout(Request $request): void

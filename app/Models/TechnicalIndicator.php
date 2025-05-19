@@ -7,6 +7,16 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
+/**
+ * 
+ *
+ * @property-read Collection<int, \App\Models\IndicatorValue> $indicatorValues
+ * @property-read int|null $indicator_values_count
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TechnicalIndicator newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TechnicalIndicator newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TechnicalIndicator query()
+ * @mixin \Eloquent
+ */
 class TechnicalIndicator extends Model
 {
     use HasFactory;

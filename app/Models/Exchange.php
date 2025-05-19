@@ -6,6 +6,18 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
+/**
+ * 
+ *
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\ExchangeApiKey> $apiKeys
+ * @property-read int|null $api_keys_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\TradingPair> $tradingPairs
+ * @property-read int|null $trading_pairs_count
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Exchange newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Exchange newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Exchange query()
+ * @mixin \Eloquent
+ */
 class Exchange extends Model
 {
     use HasFactory;

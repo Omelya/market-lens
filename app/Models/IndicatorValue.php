@@ -6,6 +6,16 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
+/**
+ * 
+ *
+ * @property-read \App\Models\TechnicalIndicator|null $technicalIndicator
+ * @property-read \App\Models\TradingPair|null $tradingPair
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|IndicatorValue newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|IndicatorValue newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|IndicatorValue query()
+ * @mixin \Eloquent
+ */
 class IndicatorValue extends Model
 {
     use HasFactory;
