@@ -29,7 +29,7 @@ return new class extends Migration
             $table->boolean('is_active')->default(true);
             $table->timestamps();
 
-            $table->index(['trading_pair_id', 'timeframe', 'timestamp', 'direction']);
+            $table->index(['trading_pair_id', 'timeframe', 'timestamp', 'direction'], 'signals_unique');
         });
     }
 

@@ -19,6 +19,7 @@ class ExchangeFactory
     public static function createById(int $exchangeId): ExchangeInterface
     {
         $exchange = ExchangeModel::findOrFail($exchangeId);
+
         return self::createBySlug($exchange->slug, $exchangeId);
     }
 
@@ -33,23 +34,23 @@ class ExchangeFactory
     public static function createBySlug(string $slug, ?int $exchangeId = null): ExchangeInterface
     {
         if (!$exchangeId) {
-            $exchange = ExchangeModel::where('slug', $slug)->first();
+            $exchange = ExchangeModel
+                ::where('slug', $slug)
+                ->first();
+
             if (!$exchange) {
-                throw new Exception("Exchange with slug '{$slug}' not found");
+                throw new \RuntimeException("Exchange with slug '{$slug}' not found");
             }
+
             $exchangeId = $exchange->id;
         }
 
-        switch ($slug) {
-            case 'binance':
-                return new BinanceExchange($exchangeId);
-            case 'bybit':
-                return new BybitExchange($exchangeId);
-            case 'whitebit':
-                return new WhiteBitExchange($exchangeId);
-            default:
-                throw new Exception("Exchange '{$slug}' not supported");
-        }
+        return match ($slug) {
+            'binance' => new BinanceExchange($exchangeId),
+            'bybit' => new BybitExchange($exchangeId),
+            'whitebit' => new WhiteBitExchange($exchangeId),
+            default => throw new Exception("Exchange '{$slug}' not supported"),
+        };
     }
 
     /**
@@ -61,29 +62,28 @@ class ExchangeFactory
      */
     public static function createWithApiKey(int $apiKeyId): ExchangeInterface
     {
-        $apiKey = ExchangeApiKey::with('exchange')->findOrFail($apiKeyId);
+        $apiKey = ExchangeApiKey
+            ::with('exchange')
+            ->findOrFail($apiKeyId);
 
-        // Перевірка, чи API-ключ активний
         if (!$apiKey->is_active) {
             throw new Exception("API key is not active");
         }
 
-        // Створення екземпляра біржі
         $exchange = self::createById($apiKey->exchange_id);
 
-        // Налаштування екземпляра біржі
         $credentials = [
             'apiKey' => $apiKey->getDecryptedApiKey(),
             'secret' => $apiKey->getDecryptedApiSecret(),
         ];
 
-        // Додавання парольної фрази, якщо вона є
         if ($apiKey->passphrase) {
             $credentials['password'] = $apiKey->getDecryptedPassphrase();
         }
 
         // Додавання опції для тестової мережі, якщо потрібно
         $options = [];
+
         if ($apiKey->is_test_net) {
             $options['testnet'] = true;
         }

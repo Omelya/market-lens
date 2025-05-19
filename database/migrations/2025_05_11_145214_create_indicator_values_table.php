@@ -21,7 +21,7 @@ return new class extends Migration
             $table->json('values');
             $table->timestamps();
 
-            $table->unique(['technical_indicator_id', 'trading_pair_id', 'timeframe', 'timestamp', 'parameters'], 'indicator_unique');
+            $table->unique(['technical_indicator_id', 'trading_pair_id', 'timeframe', 'timestamp'], 'indicator_unique');
 
             $table->index(['trading_pair_id', 'timeframe', 'timestamp']);
         });

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
- * 
+ *
  *
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\ExchangeApiKey> $apiKeys
  * @property-read int|null $api_keys_count
@@ -72,6 +72,6 @@ class Exchange extends Model
      */
     public function supportsFeature(string $feature): bool
     {
-        return in_array($feature, $this->supported_features ?? []);
+        return in_array($feature, $this->supported_features ?? [], true);
     }
 }

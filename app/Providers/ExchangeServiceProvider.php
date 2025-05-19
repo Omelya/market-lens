@@ -40,7 +40,7 @@ class ExchangeServiceProvider extends ServiceProvider
 
         // Реєстрація сервісу для шлюзу до бірж
         $this->app->singleton('exchange.gateway', function ($app) {
-            return function (string $slug) {
+            return static function (string $slug) {
                 return ExchangeFactory::createPublic($slug);
             };
         });
@@ -59,7 +59,7 @@ class ExchangeServiceProvider extends ServiceProvider
                 return ExchangeFactory::createWithApiKey($parameters['apiKey']);
             }
 
-            throw new \Exception('Cannot resolve ExchangeInterface: missing parameters');
+            throw new \RuntimeException('Cannot resolve ExchangeInterface: missing parameters');
         });
     }
 

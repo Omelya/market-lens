@@ -33,6 +33,26 @@ return Application::configure(basePath: dirname(__DIR__))
             ->withoutOverlapping();
 
         $schedule
+            ->command('indicators:calculate --exchange=all --pair=all --timeframe=1d')
+            ->cron('0 */3 * * *')
+            ->withoutOverlapping();
+
+        $schedule
+            ->command('patterns:analyze --exchange=all --pair=all --timeframe=1d --generate-signals')
+            ->cron('0 */6 * * *')
+            ->withoutOverlapping();
+
+        $schedule
+            ->command('indicators:calculate --exchange=all --pair=all --timeframe=1d,4h,1h')
+            ->dailyAt('01:00')
+            ->withoutOverlapping();
+
+        $schedule
+            ->command('patterns:analyze --exchange=all --pair=all --timeframe=1d,4h,1h --generate-signals')
+            ->dailyAt('02:00')
+            ->withoutOverlapping();
+
+        $schedule
             ->command('horizon:snapshot')
             ->everyFiveMinutes();
     })
