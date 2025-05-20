@@ -53,6 +53,11 @@ return Application::configure(basePath: dirname(__DIR__))
             ->withoutOverlapping();
 
         $schedule
+            ->command('risk:update-trailing-stops')
+            ->everyFiveMinutes()
+            ->withoutOverlapping();
+
+        $schedule
             ->command('horizon:snapshot')
             ->everyFiveMinutes();
     })
