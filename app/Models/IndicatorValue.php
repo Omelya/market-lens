@@ -14,6 +14,24 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|IndicatorValue newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|IndicatorValue newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|IndicatorValue query()
+ * @property int $id
+ * @property int $technical_indicator_id
+ * @property int $trading_pair_id
+ * @property string $timeframe
+ * @property \Illuminate\Support\Carbon $timestamp
+ * @property array<array-key, mixed> $parameters
+ * @property array<array-key, mixed> $values
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|IndicatorValue whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|IndicatorValue whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|IndicatorValue whereParameters($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|IndicatorValue whereTechnicalIndicatorId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|IndicatorValue whereTimeframe($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|IndicatorValue whereTimestamp($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|IndicatorValue whereTradingPairId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|IndicatorValue whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|IndicatorValue whereValues($value)
  * @mixin \Eloquent
  */
 class IndicatorValue extends Model

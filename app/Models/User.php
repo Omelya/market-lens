@@ -35,6 +35,20 @@ use Laravel\Sanctum\HasApiTokens;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|User wherePassword($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereRememberToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereUpdatedAt($value)
+ * @property string $timezone
+ * @property string|null $notification_preferences
+ * @property string|null $last_login_at
+ * @property string|null $last_login_ip
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\EmailVerificationToken> $emailVerificationToken
+ * @property-read int|null $email_verification_token_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\ExchangeApiKey> $exchangeApiKeys
+ * @property-read int|null $exchange_api_keys_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\UserActivityLog> $recentActivity
+ * @property-read int|null $recent_activity_count
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereLastLoginAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereLastLoginIp($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereNotificationPreferences($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereTimezone($value)
  * @mixin \Eloquent
  */
 class User extends Authenticatable
@@ -63,5 +77,15 @@ class User extends Authenticatable
     public function exchangeApiKeys(): HasMany
     {
         return $this->hasMany(ExchangeApiKey::class);
+    }
+
+    public function recentActivity(): HasMany
+    {
+        return $this->hasMany(UserActivityLog::class);
+    }
+
+    public function emailVerificationToken(): HasMany
+    {
+        return $this->hasMany(EmailVerificationToken::class);
     }
 }

@@ -21,6 +21,37 @@ use Illuminate\Support\Facades\Crypt;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|ExchangeApiKey newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|ExchangeApiKey newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|ExchangeApiKey query()
+ * @property int $id
+ * @property int $user_id
+ * @property int $exchange_id
+ * @property string $name
+ * @property bool $is_test_net
+ * @property bool $trading_enabled
+ * @property bool $is_active
+ * @property array<array-key, mixed>|null $permissions
+ * @property string|null $permissions_data
+ * @property \Illuminate\Support\Carbon|null $last_used_at
+ * @property string|null $verified_at
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property string|null $deleted_at
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ExchangeApiKey whereApiKey($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ExchangeApiKey whereApiSecret($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ExchangeApiKey whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ExchangeApiKey whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ExchangeApiKey whereExchangeId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ExchangeApiKey whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ExchangeApiKey whereIsActive($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ExchangeApiKey whereIsTestNet($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ExchangeApiKey whereLastUsedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ExchangeApiKey whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ExchangeApiKey wherePassphrase($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ExchangeApiKey wherePermissions($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ExchangeApiKey wherePermissionsData($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ExchangeApiKey whereTradingEnabled($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ExchangeApiKey whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ExchangeApiKey whereUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ExchangeApiKey whereVerifiedAt($value)
  * @mixin \Eloquent
  */
 class ExchangeApiKey extends Model

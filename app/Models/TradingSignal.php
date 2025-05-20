@@ -16,6 +16,40 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingSignal newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingSignal newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingSignal query()
+ * @property int $id
+ * @property int $trading_pair_id
+ * @property string $timeframe
+ * @property \Illuminate\Support\Carbon $timestamp
+ * @property string $direction
+ * @property string $signal_type
+ * @property string $strength
+ * @property numeric $entry_price
+ * @property numeric|null $stop_loss
+ * @property numeric|null $take_profit
+ * @property array<array-key, mixed>|null $indicators_data
+ * @property numeric|null $risk_reward_ratio
+ * @property numeric|null $success_probability
+ * @property array<array-key, mixed>|null $metadata
+ * @property bool $is_active
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingSignal whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingSignal whereDirection($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingSignal whereEntryPrice($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingSignal whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingSignal whereIndicatorsData($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingSignal whereIsActive($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingSignal whereMetadata($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingSignal whereRiskRewardRatio($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingSignal whereSignalType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingSignal whereStopLoss($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingSignal whereStrength($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingSignal whereSuccessProbability($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingSignal whereTakeProfit($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingSignal whereTimeframe($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingSignal whereTimestamp($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingSignal whereTradingPairId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingSignal whereUpdatedAt($value)
  * @mixin \Eloquent
  */
 class TradingSignal extends Model

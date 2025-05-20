@@ -14,6 +14,58 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingStrategy newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingStrategy newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingStrategy query()
+ * @property int $id
+ * @property int $user_id
+ * @property string $name
+ * @property string|null $description
+ * @property bool $is_active
+ * @property array<array-key, mixed>|null $trading_pairs
+ * @property array<array-key, mixed>|null $timeframes
+ * @property array<array-key, mixed>|null $indicators
+ * @property array<array-key, mixed>|null $entry_rules
+ * @property array<array-key, mixed>|null $exit_rules
+ * @property numeric|null $risk_per_trade
+ * @property numeric|null $max_open_positions
+ * @property numeric|null $max_daily_drawdown
+ * @property string $execution_mode
+ * @property bool $notifications_enabled
+ * @property int $total_trades
+ * @property int $winning_trades
+ * @property int $losing_trades
+ * @property numeric $win_rate
+ * @property numeric $average_profit
+ * @property numeric $average_loss
+ * @property numeric $profit_factor
+ * @property numeric $total_profit
+ * @property array<array-key, mixed>|null $metadata
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingStrategy whereAverageLoss($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingStrategy whereAverageProfit($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingStrategy whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingStrategy whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingStrategy whereEntryRules($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingStrategy whereExecutionMode($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingStrategy whereExitRules($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingStrategy whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingStrategy whereIndicators($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingStrategy whereIsActive($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingStrategy whereLosingTrades($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingStrategy whereMaxDailyDrawdown($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingStrategy whereMaxOpenPositions($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingStrategy whereMetadata($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingStrategy whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingStrategy whereNotificationsEnabled($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingStrategy whereProfitFactor($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingStrategy whereRiskPerTrade($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingStrategy whereTimeframes($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingStrategy whereTotalProfit($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingStrategy whereTotalTrades($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingStrategy whereTradingPairs($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingStrategy whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingStrategy whereUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingStrategy whereWinRate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingStrategy whereWinningTrades($value)
  * @mixin \Eloquent
  */
 class TradingStrategy extends Model

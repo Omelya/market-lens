@@ -13,6 +13,28 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|HistoricalData newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|HistoricalData newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|HistoricalData query()
+ * @property int $id
+ * @property int $trading_pair_id
+ * @property string $timeframe
+ * @property \Illuminate\Support\Carbon $timestamp
+ * @property numeric $open
+ * @property numeric $high
+ * @property numeric $low
+ * @property numeric $close
+ * @property numeric $volume
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|HistoricalData whereClose($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|HistoricalData whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|HistoricalData whereHigh($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|HistoricalData whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|HistoricalData whereLow($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|HistoricalData whereOpen($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|HistoricalData whereTimeframe($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|HistoricalData whereTimestamp($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|HistoricalData whereTradingPairId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|HistoricalData whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|HistoricalData whereVolume($value)
  * @mixin \Eloquent
  */
 class HistoricalData extends Model

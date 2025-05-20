@@ -11,6 +11,30 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Cryptocurrency newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Cryptocurrency newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Cryptocurrency query()
+ * @property int $id
+ * @property string $symbol
+ * @property string $name
+ * @property string|null $logo
+ * @property string|null $description
+ * @property bool $is_active
+ * @property numeric|null $current_price
+ * @property numeric|null $market_cap
+ * @property numeric|null $volume_24h
+ * @property array<array-key, mixed>|null $metadata
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Cryptocurrency whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Cryptocurrency whereCurrentPrice($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Cryptocurrency whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Cryptocurrency whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Cryptocurrency whereIsActive($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Cryptocurrency whereLogo($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Cryptocurrency whereMarketCap($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Cryptocurrency whereMetadata($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Cryptocurrency whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Cryptocurrency whereSymbol($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Cryptocurrency whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Cryptocurrency whereVolume24h($value)
  * @mixin \Eloquent
  */
 class Cryptocurrency extends Model

@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
+ * 
+ *
  * @property int $id
  * @property int $user_id
  * @property string $name
@@ -24,6 +26,29 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property array|null $parameters
  * @property-read \App\Models\User|null $user
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\TradingPosition> $tradingPositions
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read int|null $trading_positions_count
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|RiskManagementStrategy newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|RiskManagementStrategy newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|RiskManagementStrategy query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|RiskManagementStrategy whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|RiskManagementStrategy whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|RiskManagementStrategy whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|RiskManagementStrategy whereIsActive($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|RiskManagementStrategy whereMaxConcurrentTrades($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|RiskManagementStrategy whereMaxDailyDrawdown($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|RiskManagementStrategy whereMaxRiskPerTrade($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|RiskManagementStrategy whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|RiskManagementStrategy whereParameters($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|RiskManagementStrategy whereRiskPercentage($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|RiskManagementStrategy whereRiskRewardRatio($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|RiskManagementStrategy whereTrailingStopActivation($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|RiskManagementStrategy whereTrailingStopDistance($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|RiskManagementStrategy whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|RiskManagementStrategy whereUseTrailingStop($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|RiskManagementStrategy whereUserId($value)
+ * @mixin \Eloquent
  */
 class RiskManagementStrategy extends Model
 {

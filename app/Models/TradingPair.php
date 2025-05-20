@@ -23,6 +23,36 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingPair newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingPair newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingPair query()
+ * @property int $id
+ * @property int $exchange_id
+ * @property string $symbol
+ * @property string $base_currency
+ * @property string $quote_currency
+ * @property numeric|null $min_order_size
+ * @property numeric|null $max_order_size
+ * @property numeric|null $price_precision
+ * @property numeric|null $size_precision
+ * @property numeric|null $maker_fee
+ * @property numeric|null $taker_fee
+ * @property bool $is_active
+ * @property array<array-key, mixed>|null $metadata
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingPair whereBaseCurrency($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingPair whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingPair whereExchangeId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingPair whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingPair whereIsActive($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingPair whereMakerFee($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingPair whereMaxOrderSize($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingPair whereMetadata($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingPair whereMinOrderSize($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingPair wherePricePrecision($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingPair whereQuoteCurrency($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingPair whereSizePrecision($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingPair whereSymbol($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingPair whereTakerFee($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingPair whereUpdatedAt($value)
  * @mixin \Eloquent
  */
 class TradingPair extends Model

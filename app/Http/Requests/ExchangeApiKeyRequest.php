@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ExchangeTokenRequest extends FormRequest
+class ExchangeApiKeyRequest extends FormRequest
 {
     public function authorize(): bool
     {

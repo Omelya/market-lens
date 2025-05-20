@@ -16,6 +16,66 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingPosition newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingPosition newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingPosition query()
+ * @property int $id
+ * @property int $user_id
+ * @property int $api_key_id
+ * @property int $trading_pair_id
+ * @property int|null $trading_signal_id
+ * @property int|null $risk_strategy_id
+ * @property string $position_type
+ * @property string $direction
+ * @property string $status
+ * @property numeric $entry_price
+ * @property numeric $size
+ * @property numeric $leverage
+ * @property string|null $entry_order_id
+ * @property \Illuminate\Support\Carbon $opened_at
+ * @property numeric|null $exit_price
+ * @property string|null $exit_order_id
+ * @property \Illuminate\Support\Carbon|null $closed_at
+ * @property numeric|null $stop_loss
+ * @property string|null $stop_loss_order_id
+ * @property numeric|null $take_profit
+ * @property string|null $take_profit_order_id
+ * @property bool $trailing_stop
+ * @property numeric|null $trailing_stop_distance
+ * @property numeric|null $realized_pnl
+ * @property numeric|null $fee
+ * @property string|null $result
+ * @property array<array-key, mixed>|null $metadata
+ * @property string|null $notes
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingPosition whereApiKeyId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingPosition whereClosedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingPosition whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingPosition whereDirection($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingPosition whereEntryOrderId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingPosition whereEntryPrice($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingPosition whereExitOrderId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingPosition whereExitPrice($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingPosition whereFee($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingPosition whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingPosition whereLeverage($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingPosition whereMetadata($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingPosition whereNotes($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingPosition whereOpenedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingPosition wherePositionType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingPosition whereRealizedPnl($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingPosition whereResult($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingPosition whereRiskStrategyId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingPosition whereSize($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingPosition whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingPosition whereStopLoss($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingPosition whereStopLossOrderId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingPosition whereTakeProfit($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingPosition whereTakeProfitOrderId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingPosition whereTradingPairId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingPosition whereTradingSignalId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingPosition whereTrailingStop($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingPosition whereTrailingStopDistance($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingPosition whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TradingPosition whereUserId($value)
  * @mixin \Eloquent
  */
 class TradingPosition extends Model

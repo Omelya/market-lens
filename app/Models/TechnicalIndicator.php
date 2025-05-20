@@ -15,6 +15,22 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|TechnicalIndicator newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|TechnicalIndicator newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|TechnicalIndicator query()
+ * @property int $id
+ * @property string $name
+ * @property string $category
+ * @property string|null $description
+ * @property array<array-key, mixed>|null $default_parameters
+ * @property bool $is_active
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TechnicalIndicator whereCategory($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TechnicalIndicator whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TechnicalIndicator whereDefaultParameters($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TechnicalIndicator whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TechnicalIndicator whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TechnicalIndicator whereIsActive($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TechnicalIndicator whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TechnicalIndicator whereUpdatedAt($value)
  * @mixin \Eloquent
  */
 class TechnicalIndicator extends Model
