@@ -4,7 +4,6 @@ use App\Http\Controllers\TechnicalIndicatorController;
 
 Route
     ::middleware('auth:sanctum')
-    ->prefix('api/v1')
     ->group(function () {
         Route::prefix('indicators')->group(function () {
             Route::get('/', [TechnicalIndicatorController::class, 'index']);

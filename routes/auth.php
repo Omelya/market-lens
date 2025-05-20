@@ -17,5 +17,6 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::prefix('user')->group(function () {
         Route::get('/me', [UserController::class, 'me']);
+        Route::post('/exchange-api-keys', [UserController::class, 'addApiKey']);
     });
 });

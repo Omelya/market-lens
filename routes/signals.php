@@ -4,7 +4,6 @@ use App\Http\Controllers\TradingSignalController;
 
 Route
     ::middleware('auth:sanctum')
-    ->prefix('api')
     ->group(function () {
         Route::prefix('signals')->group(function () {
             Route::get('/', [TradingSignalController::class, 'index']);
