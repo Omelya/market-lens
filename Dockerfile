@@ -9,13 +9,14 @@ RUN apt-get update && apt-get install -y \
     libxml2-dev \
     zip \
     unzip \
-    libzip-dev
+    libzip-dev \
+    supervisor
 
 # Очищення кешу apt
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Встановлення PHP розширень
-RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd zip
+RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd zip sockets
 
 RUN pecl install redis \
     && docker-php-ext-enable redis

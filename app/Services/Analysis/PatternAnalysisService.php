@@ -27,7 +27,8 @@ class PatternAnalysisService
         int $limit = 100
     ): array {
         try {
-            $historicalData = HistoricalData::where('trading_pair_id', $tradingPairId)
+            $historicalData = HistoricalData
+                ::where('trading_pair_id', $tradingPairId)
                 ->where('timeframe', $timeframe)
                 ->orderBy('timestamp', 'desc')
                 ->limit($limit)
@@ -900,7 +901,7 @@ class PatternAnalysisService
         $body = abs($candle->close - $candle->open);
         $totalRange = $candle->high - $candle->low;
 
-        if ($totalRange === 0) {
+        if ((int) $totalRange === 0) {
             return false;
         }
 
@@ -954,7 +955,7 @@ class PatternAnalysisService
         $body = abs($candle->close - $candle->open);
         $totalRange = $candle->high - $candle->low;
 
-        if ($totalRange === 0) {
+        if ((int) $totalRange === 0) {
             return false;
         }
 

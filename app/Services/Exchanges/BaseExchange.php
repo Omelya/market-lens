@@ -5,6 +5,7 @@ namespace App\Services\Exchanges;
 use App\Interfaces\ExchangeInterface;
 use ccxt\Exchange;
 use Exception;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Log;
 use App\Models\Exchange as ExchangeModel;
 
@@ -43,7 +44,7 @@ abstract class BaseExchange implements ExchangeInterface
      *
      * @var array
      */
-    protected array$supportedTimeframes = [];
+    protected array $supportedTimeframes = [];
 
     /**
      * Список підтримуваних типів ордерів.
@@ -66,7 +67,7 @@ abstract class BaseExchange implements ExchangeInterface
         }
 
         if (!$this->ccxtClass) {
-            throw new Exception("CCXT class not defined for exchange");
+            throw new \RuntimeException("CCXT class not defined for exchange");
         }
     }
 
@@ -83,7 +84,7 @@ abstract class BaseExchange implements ExchangeInterface
         $class = "\\ccxt\\{$this->ccxtClass}";
 
         if (!class_exists($class)) {
-            throw new Exception("CCXT class {$class} not found");
+            throw new \RuntimeException("CCXT class {$class} not found");
         }
 
         $config = array_merge([
@@ -100,11 +101,11 @@ abstract class BaseExchange implements ExchangeInterface
      * @param mixed $default Значення за замовчуванням у випадку помилки.
      * @return mixed
      */
-    protected function safeRequest(callable $callback, $default = []): mixed
+    protected function safeRequest(callable $callback, array $default = []): mixed
     {
         try {
             if (!$this->exchange) {
-                throw new Exception("Exchange not initialized");
+                throw new \RuntimeException("Exchange not initialized");
             }
 
             return $callback();
@@ -237,8 +238,10 @@ abstract class BaseExchange implements ExchangeInterface
      */
     public function getOHLCV(string $symbol, string $timeframe, ?int $since = null, ?int $limit = 100): array
     {
-        return $this->safeRequest(function () use ($symbol, $timeframe, $since, $limit) {
-            $candles = $this->exchange->fetch_ohlcv($symbol, $timeframe, $since, $limit);
+        $endTime = Carbon::now()->unix() * 1000;
+
+        return $this->safeRequest(function () use ($symbol, $timeframe, $since, $limit, $endTime) {
+            $candles = $this->exchange->fetch_ohlcv($symbol, $timeframe, $since, $limit, ['endTime' => $endTime]);
 
             return array_map(function ($candle) {
                 return [

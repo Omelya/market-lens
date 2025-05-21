@@ -87,7 +87,8 @@ class CryptoDataService
     {
         $count = 0;
 
-        $tradingPairs = TradingPair::where('is_active', true)
+        $tradingPairs = TradingPair
+            ::where('is_active', true)
             ->with('exchange')
             ->get();
 
@@ -97,7 +98,7 @@ class CryptoDataService
                 $symbol = $pair->symbol;
 
                 $this->broadcastPrice($exchangeSlug, $symbol);
-
+                $this->broadcastKlines($exchangeSlug, $symbol, '1m');
                 $this->broadcastOrderBook($exchangeSlug, $symbol);
 
                 $count++;

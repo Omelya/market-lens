@@ -9,12 +9,12 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Crypt;
 
 /**
- * 
+ *
  *
  * @property-read \App\Models\Exchange|null $exchange
  * @property-write mixed $api_key
  * @property-write mixed $api_secret
- * @property-write mixed $passphrase
+ * @property mixed $passphrase
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\TradingPosition> $tradingPositions
  * @property-read int|null $trading_positions_count
  * @property-read \App\Models\User|null $user

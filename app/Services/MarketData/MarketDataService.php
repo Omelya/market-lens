@@ -2,6 +2,7 @@
 
 namespace App\Services\MarketData;
 
+use App\Models\Exchange;
 use App\Models\HistoricalData;
 use App\Models\TradingPair;
 use App\Services\Exchanges\ExchangeRegistry;
@@ -21,22 +22,18 @@ class MarketDataService
     public function fetchAndSaveHistoricalData(int $tradingPairId, string $timeframe, ?int $since = null, ?int $limit = 1000): array
     {
         try {
-            // Отримання торгової пари
             $tradingPair = TradingPair::with('exchange')->findOrFail($tradingPairId);
 
-            // Отримання біржі
             $exchange = ExchangeRegistry::getPublic($tradingPair->exchange->slug);
 
-            // Отримання історичних даних
             $ohlcvData = $exchange->getOHLCV($tradingPair->symbol, $timeframe, $since, $limit);
 
-            // Збереження даних в базу даних
             $savedCount = 0;
             $duplicateCount = 0;
 
             foreach ($ohlcvData as $candle) {
-                // Перевірка, чи дані вже існують
-                $exists = HistoricalData::where('trading_pair_id', $tradingPairId)
+                $exists = HistoricalData
+                    ::where('trading_pair_id', $tradingPairId)
                     ->where('timeframe', $timeframe)
                     ->where('timestamp', date('Y-m-d H:i:s', $candle['timestamp'] / 1000))
                     ->exists();
@@ -96,8 +93,8 @@ class MarketDataService
     public function getLatestHistoricalData(int $tradingPairId, string $timeframe, int $limit = 100): array
     {
         try {
-            // Отримання історичних даних з бази даних
-            $historicalData = HistoricalData::where('trading_pair_id', $tradingPairId)
+            $historicalData = HistoricalData
+                ::where('trading_pair_id', $tradingPairId)
                 ->where('timeframe', $timeframe)
                 ->orderBy('timestamp', 'desc')
                 ->limit($limit)
@@ -139,21 +136,25 @@ class MarketDataService
     {
         try {
             $results = [];
-            $exchanges = ['binance', 'bybit', 'whitebit'];
+
+            $exchanges = Exchange
+                ::select(['slug'])
+                ->get();
 
             foreach ($exchanges as $exchangeSlug) {
                 $exchange = ExchangeRegistry::getPublic($exchangeSlug);
                 $tickers = $exchange->getTickers();
 
-                $tradingPairs = TradingPair::whereHas('exchange', function ($query) use ($exchangeSlug) {
-                    $query->where('slug', $exchangeSlug);
-                })->get();
+                $tradingPairs = TradingPair
+                    ::whereHas('exchange', function ($query) use ($exchangeSlug) {
+                        $query->where('slug', $exchangeSlug);
+                    })
+                    ->get();
 
                 foreach ($tradingPairs as $tradingPair) {
                     if (isset($tickers[$tradingPair->symbol])) {
                         $ticker = $tickers[$tradingPair->symbol];
 
-                        // Оновлення торгової пари з даними тікера
                         $tradingPair->update([
                             'last_price' => $ticker['last'] ?? $ticker['close'] ?? null,
                             'bid_price' => $ticker['bid'] ?? null,
@@ -202,13 +203,10 @@ class MarketDataService
     public function getOrderBook(int $tradingPairId, int $limit = 100): array
     {
         try {
-            // Отримання торгової пари
             $tradingPair = TradingPair::with('exchange')->findOrFail($tradingPairId);
 
-            // Отримання біржі
             $exchange = ExchangeRegistry::getPublic($tradingPair->exchange->slug);
 
-            // Отримання ордербуку
             $orderBook = $exchange->getOrderBook($tradingPair->symbol, $limit);
 
             return [
@@ -245,10 +243,8 @@ class MarketDataService
     public function getAvailableTimeframes(string $exchangeSlug): array
     {
         try {
-            // Отримання біржі
             $exchange = ExchangeRegistry::getPublic($exchangeSlug);
 
-            // Отримання таймфреймів
             $timeframes = $exchange->getTimeframes();
 
             return [

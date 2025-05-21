@@ -564,7 +564,7 @@ class TechnicalIndicatorService
             $highestHigh = max(array_slice($high, $i - $kLength + 1, $kLength));
             $lowestLow = min(array_slice($low, $i - $kLength + 1, $kLength));
 
-            if ($highestHigh - $lowestLow === 0) {
+            if (($highestHigh - $lowestLow) <= 0) {
                 $k = 50;
             } else {
                 $k = 100 * (($close[$i] - $lowestLow) / ($highestHigh - $lowestLow));
@@ -686,7 +686,7 @@ class TechnicalIndicatorService
         $dx = [];
 
         for ($i = 0, $iMax = count($smoothedTR); $i < $iMax; $i++) {
-            if ($smoothedTR[$i] === 0) {
+            if ((int) $smoothedTR[$i] === 0) {
                 $plusDI[] = 0;
                 $minusDI[] = 0;
             } else {

@@ -27,10 +27,10 @@ return Application::configure(basePath: dirname(__DIR__))
         ]);
     })
     ->withSchedule(function (Schedule $schedule) {
-        $schedule
-            ->job(new BroadcastCryptoDataJob('all', 'all'), 'broadcasts')
-            ->everyMinute()
-            ->withoutOverlapping();
+//        $schedule
+//            ->job(new BroadcastCryptoDataJob('all', 'all'), 'broadcasts')
+//            ->everyMinute()
+//            ->withoutOverlapping();
 
         $schedule
             ->command('indicators:calculate --exchange=all --pair=all --timeframe=1d')
@@ -58,8 +58,39 @@ return Application::configure(basePath: dirname(__DIR__))
             ->withoutOverlapping();
 
         $schedule
-            ->command('horizon:snapshot')
-            ->everyFiveMinutes();
+            ->command('load:last-historical-data --timeframe=1m')
+            ->everyMinute()
+            ->withoutOverlapping();
+
+        $schedule
+            ->command('load:last-historical-data --timeframe=5m')
+            ->everyFiveMinutes()
+            ->withoutOverlapping();
+
+        $schedule
+            ->command('load:last-historical-data --timeframe=15m')
+            ->everyFifteenMinutes()
+            ->withoutOverlapping();
+
+        $schedule
+            ->command('load:last-historical-data --timeframe=30m')
+            ->cron('*/30 * * * *')
+            ->withoutOverlapping();
+
+        $schedule
+            ->command('load:last-historical-data --timeframe=1h')
+            ->hourly()
+            ->withoutOverlapping();
+
+        $schedule
+            ->command('load:last-historical-data --timeframe=4h')
+            ->cron('0 */4 * * *')
+            ->withoutOverlapping();
+
+        $schedule
+            ->command('load:last-historical-data --timeframe=1d')
+            ->dailyAt('00:01')
+            ->withoutOverlapping();
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //

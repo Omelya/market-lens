@@ -7,7 +7,7 @@ use App\Http\Requests\UpdateApiKeyRequest;
 use App\Http\Resources\ExchangeApiKeyResource;
 use App\Models\ExchangeApiKey;
 use App\Models\ExchangeApiKeyLog;
-use App\Services\Exchanges\ExchangeFactory;
+use App\Services\ApiKeys\ApiKeyVerificationService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -126,8 +126,10 @@ class ExchangeApiKeyController extends Controller
 
     public function destroy(int $id): JsonResponse
     {
-        $user = Auth::user();
-        $apiKey = $user->exchangeApiKeys()->findOrFail($id);
+        $apiKey = Auth
+            ::user()
+            ?->exchangeApiKeys()
+            ->findOrFail($id);
 
         $openPositionsCount = $apiKey
             ->tradingPositions()
@@ -164,78 +166,16 @@ class ExchangeApiKeyController extends Controller
         }
     }
 
-    public function verify(int $id): JsonResponse
+    public function verify(int $id, ApiKeyVerificationService $verificationService): JsonResponse
     {
-        $user = Auth::user();
-        $apiKey = $user->exchangeApiKeys()->findOrFail($id);
+        Auth
+            ::user()
+            ?->exchangeApiKeys()
+            ->findOrFail($id);
 
-        try {
-            $exchange = ExchangeFactory::createWithApiKey($id);
-            $balanceResult = $exchange->getBalance();
+        $result = $verificationService->verifyApiKey($id);
 
-            $apiKey->verified_at = now();
-            $apiKey->save();
-
-            $this->logApiKeyAction($apiKey, 'verify', ['success' => true]);
-
-            return response()->json([
-                'status' => 'success',
-                'message' => 'API ключ успішно перевірено',
-                'data' => [
-                    'balance_summary' => $this->summarizeBalance($balanceResult),
-                    'verified_at' => $apiKey->verified_at,
-                ]
-            ]);
-        } catch (\Exception $e) {
-            $this->logApiKeyAction($apiKey, 'verify', [
-                'success' => false,
-                'error' => $e->getMessage()
-            ]);
-
-            return response()->json([
-                'status' => 'error',
-                'message' => 'Перевірка API ключа не вдалася: ' . $e->getMessage()
-            ], 422);
-        }
-    }
-
-    public function getActivityLog(int $id): JsonResponse
-    {
-        $user = Auth::user();
-        $apiKey = $user->exchangeApiKeys()->findOrFail($id);
-
-        $logs = ExchangeApiKeyLog
-            ::where('exchange_api_key_id', $apiKey->id)
-            ->orderBy('created_at', 'desc')
-            ->paginate(20);
-
-        return response()->json([
-            'status' => 'success',
-            'data' => $logs
-        ]);
-    }
-
-    protected function summarizeBalance(array $balanceResult): array
-    {
-        $total = 0;
-        $mainCurrencies = [];
-
-        foreach ($balanceResult['total'] as $currency => $amount) {
-            if ($amount > 0) {
-                $mainCurrencies[$currency] = $amount;
-            }
-
-            // В ідеалі тут мав би бути розрахунок в USD на основі поточних курсів
-            // але це спрощена версія
-            if ($currency === 'USDT' || $currency === 'USDC' || $currency === 'USD') {
-                $total += $amount;
-            }
-        }
-
-        return [
-            'total_balance' => $total,
-            'main_currencies' => array_slice($mainCurrencies, 0, 5, true)
-        ];
+        return response()->json($result);
     }
 
     protected function logApiKeyAction(ExchangeApiKey $apiKey, string $action, array $details = []): void

@@ -67,7 +67,7 @@ class ExchangeFactory
             ->findOrFail($apiKeyId);
 
         if (!$apiKey->is_active) {
-            throw new Exception("API key is not active");
+            throw new \RuntimeException("API key is not active");
         }
 
         $exchange = self::createById($apiKey->exchange_id);

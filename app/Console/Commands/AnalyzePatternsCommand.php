@@ -21,6 +21,14 @@ class AnalyzePatternsCommand extends Command
 
     protected PatternAnalysisService $analysisService;
 
+    protected int $successCount = 0;
+
+    protected int $errorCount = 0;
+
+    protected int $patterns = 0;
+
+    protected int $tradingSignals = 0;
+
     public function __construct(PatternAnalysisService $analysisService)
     {
         parent::__construct();
@@ -40,11 +48,24 @@ class AnalyzePatternsCommand extends Command
         $totalPairs = count($tradingPairs);
         $this->info("Розпочато аналіз паттернів для {$totalPairs} торгових пар");
 
-        $successCount = 0;
-        $errorCount = 0;
-        $patterns = 0;
-        $signals = 0;
+        $timeframes = explode(',', $timeframe);
 
+        foreach ($timeframes as $timeframe) {
+            $this->analysePairs($tradingPairs, $timeframe, $limit, $generateSignals);
+        }
+
+        $this->newLine();
+        $this->info("Завершено! Успішно: {$this->successCount}, Помилок: {$this->errorCount}");
+        $this->info("Всього знайдено: {$this->patterns} паттернів, {$this->tradingSignals} сигналів");
+    }
+
+    protected function analysePairs(
+        Collection $tradingPairs,
+        string $timeframe,
+        int $limit,
+        bool $generateSignals,
+    ): void
+    {
         foreach ($tradingPairs as $tradingPair) {
             $this->info("Аналіз пари: {$tradingPair->symbol} ({$tradingPair->exchange->name})");
 
@@ -59,9 +80,9 @@ class AnalyzePatternsCommand extends Command
                     );
 
                 if ($result['status'] === 'success') {
-                    $successCount++;
-                    $patterns += $result['patterns_count'];
-                    $signals += $result['signals_count'];
+                    $this->successCount++;
+                    $this->patterns += $result['patterns_count'];
+                    $this->tradingSignals += $result['signals_count'];
 
                     $this->line("  ✅ Знайдено {$result['patterns_count']} паттернів");
 
@@ -110,11 +131,11 @@ class AnalyzePatternsCommand extends Command
                         }
                     }
                 } else {
-                    $errorCount++;
+                    $this->errorCount++;
                     $this->warn("  ⚠️ Помилка: {$result['message']}");
                 }
             } catch (\Exception $e) {
-                $errorCount++;
+                $this->errorCount++;
                 $this->error("  ❌ Виключення: {$e->getMessage()}");
 
                 Log::error('Помилка аналізу паттернів', [
@@ -124,10 +145,6 @@ class AnalyzePatternsCommand extends Command
                 ]);
             }
         }
-
-        $this->newLine();
-        $this->info("Завершено! Успішно: {$successCount}, Помилок: {$errorCount}");
-        $this->info("Всього знайдено: {$patterns} паттернів, {$signals} сигналів");
     }
 
     protected function getTradingPairs(?string $exchange, ?string $pair): Collection

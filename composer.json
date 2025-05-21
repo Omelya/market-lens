@@ -11,9 +11,9 @@
     "require": {
         "php": "^8.2",
         "ccxt/ccxt": "^1.53",
+        "iamfarhad/laravel-rabbitmq": "^0.1.2",
         "inertiajs/inertia-laravel": "^2.0",
         "laravel/framework": "^12.0",
-        "laravel/horizon": "^5.31",
         "laravel/reverb": "^1.0",
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.10.1",
